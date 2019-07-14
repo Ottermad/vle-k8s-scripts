@@ -1,0 +1,26 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: vle-restapi
+spec:
+  template:
+    metadata:
+      labels:
+        app: vle-restapi
+    spec:
+      containers:
+      - image: ottermad/vle-restapi:latest
+        name: vle-restapi
+        env:
+        - name: POSTGRES_HOST
+          value: postgres
+        - name: POSTGRES_PORT
+          value: "5432"
+        - name: POSTGRES_DATABASE
+          value: user_db
+        - name: POSTGRES_USER
+          value: user
+        - name: POSTGRES_PASSWORD
+          value: mysecretpassword
+        ports:
+        - containerPort: 80
